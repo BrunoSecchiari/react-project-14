@@ -1,26 +1,25 @@
 import { Link } from 'react-router-dom';
-
 import cityImg from '../assets/city.jpg';
 import heroImg from '../assets/hero.png';
 
-export default function WelcomePage() {
+const WelcomePage = () => {
   return (
     <>
-      <header id="welcome-header">
-        <div id="welcome-header-content">
+      <header id='welcome-header'>
+        <div id='welcome-header-content'>
           <h1>Ready for a challenge?</h1>
-          <Link id="cta-link" to="/challenges">
+          <Link id='cta-link' to='/challenges'>
             Get Started
           </Link>
         </div>
         <img
           src={cityImg}
-          alt="A city skyline touched by sunlight"
-          id="city-image"
+          alt='A city skyline touched by sunlight'
+          id='city-image'
         />
-        <img src={heroImg} alt="A superhero wearing a cape" id="hero-image" />
+        <img src={heroImg} alt='A superhero wearing a cape' id='hero-image' />
       </header>
-      <main id="welcome-content">
+      <main id='welcome-content'>
         <section>
           <h2>There&apos;s never been a better time.</h2>
           <p>
@@ -65,4 +64,6 @@ export default function WelcomePage() {
       </main>
     </>
   );
-}
+};
+
+export default WelcomePage;

@@ -6,23 +6,23 @@ export const ChallengesContext = createContext({
   updateChallengeStatus: () => {},
 });
 
-export default function ChallengesContextProvider({ children }) {
+const ChallengesContextProvider = ({ children }) => {
   const [challenges, setChallenges] = useState([]);
 
-  function addChallenge(challenge) {
+  const addChallenge = (challenge) => {
     setChallenges((prevChallenges) => [
       { ...challenge, id: Math.random().toString(), status: 'active' },
       ...prevChallenges,
     ]);
-  }
+  };
 
-  function deleteChallenge(challengeId) {
+  const deleteChallenge = (challengeId) => {
     setChallenges((prevChallenges) =>
       prevChallenges.filter((challenge) => challenge.id !== challengeId)
     );
-  }
+  };
 
-  function updateChallengeStatus(challengeId, newStatus) {
+  const updateChallengeStatus = (challengeId, newStatus) => {
     setChallenges((prevChallenges) =>
       prevChallenges.map((challenge) => {
         if (challenge.id === challengeId) {
@@ -31,7 +31,7 @@ export default function ChallengesContextProvider({ children }) {
         return challenge;
       })
     );
-  }
+  };
 
   const challengesContext = {
     challenges,
@@ -45,4 +45,6 @@ export default function ChallengesContextProvider({ children }) {
       {children}
     </ChallengesContext.Provider>
   );
-}
+};
+
+export default ChallengesContextProvider;

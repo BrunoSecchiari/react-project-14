@@ -1,6 +1,6 @@
 import Badge from './Badge.jsx';
 
-function Tab({ isSelected, onSelect, badgeCaption, children }) {
+const Tab = ({ isSelected, onSelect, badgeCaption, children }) => {
   return (
     <li>
       <button
@@ -10,20 +10,20 @@ function Tab({ isSelected, onSelect, badgeCaption, children }) {
         {children}
         <Badge caption={badgeCaption}></Badge>
       </button>
-      {isSelected && <div className="active-tab-indicator" />}
+      {isSelected && <div className='active-tab-indicator' />}
     </li>
   );
-}
+};
 
-export default function ChallengeTabs({
+const ChallengeTabs = ({
   selectedType,
   onSelectType,
   challenges,
   children,
-}) {
+}) => {
   return (
     <>
-      <menu id="tabs">
+      <menu id='tabs'>
         <Tab
           isSelected={selectedType === 'active'}
           onSelect={() => onSelectType('active')}
@@ -49,4 +49,6 @@ export default function ChallengeTabs({
       <div>{children}</div>
     </>
   );
-}
+};
+
+export default ChallengeTabs;

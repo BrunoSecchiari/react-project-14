@@ -1,10 +1,9 @@
 import { useContext, useRef, useState } from 'react';
-
 import { ChallengesContext } from '../store/challenges-context.jsx';
 import Modal from './Modal.jsx';
 import images from '../assets/images.js';
 
-export default function NewChallenge({ onDone }) {
+const NewChallenge = ({ onDone }) => {
   const title = useRef();
   const description = useRef();
   const deadline = useRef();
@@ -12,11 +11,11 @@ export default function NewChallenge({ onDone }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const { addChallenge } = useContext(ChallengesContext);
 
-  function handleSelectImage(image) {
+  const handleSelectImage = (image) => {
     setSelectedImage(image);
-  }
+  };
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const challenge = {
       title: title.current.value,
@@ -36,27 +35,27 @@ export default function NewChallenge({ onDone }) {
 
     onDone();
     addChallenge(challenge);
-  }
+  };
 
   return (
-    <Modal title="New Challenge" onClose={onDone}>
-      <form id="new-challenge" onSubmit={handleSubmit}>
+    <Modal title='New Challenge' onClose={onDone}>
+      <form id='new-challenge' onSubmit={handleSubmit}>
         <p>
-          <label htmlFor="title">Title</label>
-          <input ref={title} type="text" name="title" id="title" />
+          <label htmlFor='title'>Title</label>
+          <input ref={title} type='text' name='title' id='title' />
         </p>
 
         <p>
-          <label htmlFor="description">Description</label>
-          <textarea ref={description} name="description" id="description" />
+          <label htmlFor='description'>Description</label>
+          <textarea ref={description} name='description' id='description' />
         </p>
 
         <p>
-          <label htmlFor="deadline">Deadline</label>
-          <input ref={deadline} type="date" name="deadline" id="deadline" />
+          <label htmlFor='deadline'>Deadline</label>
+          <input ref={deadline} type='date' name='deadline' id='deadline' />
         </p>
 
-        <ul id="new-challenge-images">
+        <ul id='new-challenge-images'>
           {images.map((image) => (
             <li
               key={image.alt}
@@ -68,8 +67,8 @@ export default function NewChallenge({ onDone }) {
           ))}
         </ul>
 
-        <p className="new-challenge-actions">
-          <button type="button" onClick={onDone}>
+        <p className='new-challenge-actions'>
+          <button type='button' onClick={onDone}>
             Cancel
           </button>
           <button>Add Challenge</button>
@@ -77,4 +76,6 @@ export default function NewChallenge({ onDone }) {
       </form>
     </Modal>
   );
-}
+};
+
+export default NewChallenge;

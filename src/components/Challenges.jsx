@@ -1,19 +1,18 @@
 import { useContext, useState } from 'react';
-
 import { ChallengesContext } from '../store/challenges-context.jsx';
 import ChallengeItem from './ChallengeItem.jsx';
 import ChallengeTabs from './ChallengeTabs.jsx';
 
-export default function Challenges() {
+const Challenges = () => {
   const { challenges } = useContext(ChallengesContext);
   const [selectedType, setSelectedType] = useState('active');
   const [expanded, setExpanded] = useState(null);
 
-  function handleSelectType(newType) {
+  const handleSelectType = (newType) => {
     setSelectedType(newType);
-  }
+  };
 
-  function handleViewDetails(id) {
+  const handleViewDetails = (id) => {
     setExpanded((prevId) => {
       if (prevId === id) {
         return null;
@@ -21,7 +20,7 @@ export default function Challenges() {
 
       return id;
     });
-  }
+  };
 
   const filteredChallenges = {
     active: challenges.filter((challenge) => challenge.status === 'active'),
@@ -34,14 +33,14 @@ export default function Challenges() {
   const displayedChallenges = filteredChallenges[selectedType];
 
   return (
-    <div id="challenges">
+    <div id='challenges'>
       <ChallengeTabs
         challenges={filteredChallenges}
         onSelectType={handleSelectType}
         selectedType={selectedType}
       >
         {displayedChallenges.length > 0 && (
-          <ol className="challenge-items">
+          <ol className='challenge-items'>
             {displayedChallenges.map((challenge) => (
               <ChallengeItem
                 key={challenge.id}
@@ -56,4 +55,6 @@ export default function Challenges() {
       </ChallengeTabs>
     </div>
   );
-}
+};
+
+export default Challenges;

@@ -2,7 +2,7 @@ import Header from '../components/Header.jsx';
 import Challenges from '../components/Challenges.jsx';
 import ChallengesContextProvider from '../store/challenges-context.jsx';
 
-export default function ChallengesPage() {
+const ChallengesPage = () => {
   return (
     <ChallengesContextProvider>
       <Header />
@@ -11,4 +11,6 @@ export default function ChallengesPage() {
       </main>
     </ChallengesContextProvider>
   );
-}
+};
+
+export default ChallengesPage;
