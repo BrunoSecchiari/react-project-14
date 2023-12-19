@@ -24,8 +24,8 @@ const Header = () => {
         <motion.button
           onClick={handleStartAddNewChallenge}
           className='button'
-          whileHover={{ scale: 1.1 }}
-          transition={{ type: 'spring', stiffness: 250 }}
+          whileHover={{ scale: 1.2 }}
+          transition={{ type: 'spring', stiffness: 500 }}
         >
           Add Challenge
         </motion.button>

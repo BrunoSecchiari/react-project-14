@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { useContext, useState } from 'react';
 import { ChallengesContext } from '../store/challenges-context.jsx';
 import ChallengeItem from './ChallengeItem.jsx';
@@ -39,19 +40,38 @@ const Challenges = () => {
         onSelectType={handleSelectType}
         selectedType={selectedType}
       >
-        {displayedChallenges.length > 0 && (
-          <ol className='challenge-items'>
-            {displayedChallenges.map((challenge) => (
-              <ChallengeItem
-                key={challenge.id}
-                challenge={challenge}
-                onViewDetails={() => handleViewDetails(challenge.id)}
-                isExpanded={expanded === challenge.id}
-              />
-            ))}
-          </ol>
-        )}
-        {displayedChallenges.length === 0 && <p>No challenges found.</p>}
+        <AnimatePresence mode='wait'>
+          {displayedChallenges.length > 0 && (
+            <motion.ol
+              className='challenge-items'
+              key='list'
+              initial={{ y: -30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -30, opacity: 0 }}
+            >
+              <AnimatePresence>
+                {displayedChallenges.map((challenge) => (
+                  <ChallengeItem
+                    key={challenge.id}
+                    challenge={challenge}
+                    onViewDetails={() => handleViewDetails(challenge.id)}
+                    isExpanded={expanded === challenge.id}
+                  />
+                ))}
+              </AnimatePresence>
+            </motion.ol>
+          )}
+          {displayedChallenges.length === 0 && (
+            <motion.p
+              key='fallback'
+              animate={{ y: 0, opacity: 1 }}
+              initial={{ y: -20, opacity: 0 }}
+              exit={{ y: -20, opacity: 0 }}
+            >
+              No challenges found.
+            </motion.p>
+          )}
+        </AnimatePresence>
       </ChallengeTabs>
     </div>
   );
