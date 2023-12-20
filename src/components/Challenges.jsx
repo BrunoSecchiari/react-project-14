@@ -45,9 +45,9 @@ const Challenges = () => {
             <motion.ol
               className='challenge-items'
               key='list'
-              initial={{ y: -30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -30, opacity: 0 }}
+              initial={{ y: -20, opacity: 0 }}
+              exit={{ y: -20, opacity: 0 }}
             >
               <AnimatePresence>
                 {displayedChallenges.map((challenge) => (
